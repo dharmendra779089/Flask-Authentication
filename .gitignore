@@ -1,0 +1,48 @@
+# ============================================================================
+# .gitignore — Files and directories excluded from Git version control
+# ============================================================================
+
+# --- Python Bytecode ---
+# Python compiles .py files into .pyc bytecode files for faster execution.
+# These are machine-specific and should not be committed.
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual Environment ---
+# The .venv/ directory contains the project's isolated Python environment
+# with all installed packages. Each developer creates their own from requirements.txt.
+.venv/
+venv/
+env/
+ENV/
+
+# --- SQLite Database ---
+# The instance/ folder contains the SQLite database file (users.db).
+# This is runtime data and should not be shared via version control.
+instance/
+
+# --- IDE / Editor Files ---
+# PyCharm project settings (specific to each developer's IDE configuration).
+.idea/
+
+# VS Code workspace settings.
+.vscode/
+
+# --- OS Generated Files ---
+# macOS Finder metadata file.
+.DS_Store
+
+# Windows thumbnail cache.
+Thumbs.db
+
+# --- Distribution / Packaging ---
+dist/
+build/
+*.egg-info/
+*.egg
+
+# --- Environment Variables ---
+# .env files often contain secret keys, API tokens, and database credentials.
+.env
+.flaskenv

@@ -1,0 +1,212 @@
+/* =============================================================================
+   styles.css — Custom Stylesheet for Flask Authentication App
+   =============================================================================
+   This stylesheet provides the visual design for the entire application, including:
+     - Google Fonts import for the 'Open Sans' typeface.
+     - Custom button styles (with gradient backgrounds and hover effects).
+     - Full-page dark gradient background on the body.
+     - Centered content boxes for forms and headings.
+     - Styled input fields with translucent backgrounds and focus transitions.
+   ============================================================================= */
+
+/* --- Google Fonts Import ---
+   Import the 'Open Sans' font family from Google Fonts CDN.
+   This makes the font available for use throughout the page via font-family. */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/* --- Base Button Styles ---
+   Default styling for all elements with the .btn class.
+   Creates a light gray gradient button with rounded corners and subtle shadow.
+   Includes vendor prefixes (-moz, -webkit, -o, -ms) for broad browser compatibility.
+   - display: inline-block — allows the button to sit inline but accept width/height.
+   - *display: inline; *zoom: 1 — IE7 fallback for inline-block behavior.
+   - padding: 4px 10px — inner spacing (top/bottom 4px, left/right 10px).
+   - text-shadow — adds a subtle white shadow below the text for a 3D emboss effect.
+   - vertical-align: middle — aligns the button vertically with surrounding inline content.
+   - background-image: linear-gradient — creates a white-to-gray gradient background.
+   - border-radius: 4px — rounds the corners of the button by 4 pixels.
+   - box-shadow — adds an inner highlight (top) and outer drop shadow for depth.
+   - cursor: pointer — changes the mouse cursor to a hand icon on hover. */
+.btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
+
+/* --- Button Hover/Active/Disabled States ---
+   When the button is hovered, clicked (active), toggled (active class),
+   or disabled, change the background color to a slightly darker gray. */
+.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
+
+/* --- Large Button Variant ---
+   .btn-large increases the padding, font size, and border radius
+   to create a visually larger, more prominent button. */
+.btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+
+/* --- Button Hover Animation ---
+   On hover, shift the background gradient position upward by 15px
+   to create a subtle visual lift effect.
+   The transition property animates this change over 0.1 seconds with linear easing. */
+.btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+
+/* --- Primary Button Text Styles ---
+   .btn-primary uses white text with a dark text shadow for contrast
+   against the blue gradient background.
+   The :hover state inherits the same text styling. */
+.btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
+
+/* --- Primary Button Active State ---
+   When actively pressed, reduce the text opacity slightly (75% white)
+   to give tactile feedback that the button is being clicked. */
+.btn-primary.active { color: rgba(255, 255, 255, 0.75); }
+
+/* --- Primary Button Background ---
+   .btn-primary creates a blue gradient button (sky blue #6eb6de to medium blue #4a77d4).
+   Includes:
+   - Vendor-prefixed gradient backgrounds for cross-browser support.
+   - A darker blue border (#3762bc) for definition.
+   - A dark text shadow for depth.
+   - Inner highlight and outer drop shadow for a 3D raised appearance. */
+.btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+
+/* --- Primary Button Hover/Active/Disabled States ---
+   Remove the gradient filter and use a flat blue background when
+   the primary button is hovered, active, or disabled. */
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
+
+/* --- Block-Level Button ---
+   .btn-block makes the button stretch to fill the full width of its container
+   and adds bottom margin to separate it from the next element. */
+.btn-block { width: 100%; display:block; margin-bottom:20px; }
+
+/* --- Universal Box Sizing ---
+   Apply border-box sizing to ALL elements (*).
+   With border-box, padding and borders are included in the element's total width/height,
+   making layout calculations much simpler and more predictable.
+   Includes vendor prefixes for older browsers. */
+* { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
+
+/* --- HTML Root Element ---
+   Set the <html> element to fill the entire browser viewport.
+   overflow:hidden prevents scrollbars from appearing on the full-page gradient background. */
+html { width: 100%; height:100%; overflow:hidden; }
+
+/* --- Body Styles ---
+   The <body> fills the entire viewport and uses the 'Open Sans' font.
+   The background is a complex layered gradient that creates a deep blue-to-dark-red
+   color scheme:
+   - Layer 1 (radial): a subtle elliptical highlight in the bottom-left corner.
+   - Layer 2 (linear, top-to-bottom): a teal-to-dark-blue overlay.
+   - Layer 3 (linear, diagonal): a dark red (#670d10) to navy (#092756) base.
+   Together, these layers create a rich, atmospheric background.
+   Includes vendor prefixes (-moz, -webkit, -o, -ms) and an IE filter fallback. */
+body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	background: #092756;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+
+/* --- Anchor (Link) Styles ---
+   Remove the default underline from all links and center-align their text.
+   This gives links a cleaner look consistent with the button-style navigation. */
+a {
+    text-decoration: none;
+    text-align: center;
+}
+
+/* --- Paragraph Styles ---
+   Style all <p> elements with an orange-red color (#ee6f57).
+   This is primarily used for flash messages (error/info feedback) on the login page.
+   Text is centered for visual consistency within the .box container. */
+p {
+    color: #ee6f57;
+    text-align: center;
+}
+
+/* --- Centered Content Box ---
+   .box creates an absolutely positioned container that is centered both
+   horizontally and vertically on the page.
+   - top: 50%; left: 50% — places the top-left corner at the center of the viewport.
+   - margin: -150px 0 0 -150px — shifts the box back by half its own size (150px)
+     to achieve true centering (since the box is 300x300px).
+   This is used as the main container for the login, register, and home page content. */
+.box { 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -150px;
+	width:300px;
+	height:300px;
+}
+
+/* --- Box Heading Styles ---
+   Style <h1> elements inside .box with:
+   - White text color for contrast against the dark gradient background.
+   - A blurred text shadow (10px blur, semi-transparent black) for a glowing effect.
+   - 1px letter spacing for slightly expanded, elegant text. */
+.box h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+/* --- Container Styles ---
+   .container provides an alternative layout for pages like secrets.html.
+   - margin-top: 10rem — pushes the content down from the top of the page.
+   - text-align: center — centers all text and inline elements. */
+.container {
+    margin-top: 10rem;
+	text-align: center;
+}
+
+/* --- Box Paragraph Styles ---
+   Style <p> elements inside .box with white text and the same glow effect as headings.
+   This ensures any text within the box (like the "already logged in" message) is legible. */
+.box p { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+/* --- Container Heading Styles ---
+   Style <h1> elements inside .container with the same white text, glow shadow,
+   and letter spacing as the .box headings, ensuring visual consistency across pages. */
+.container h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+/* --- Input Field Styles ---
+   Style all <input> elements (email, password, name fields) with:
+   - width: 100% — stretches the input to fill its container's width.
+   - margin-bottom: 10px — adds space between stacked input fields.
+   - background: rgba(0,0,0,0.3) — semi-transparent black background (30% opacity)
+     that lets the page's gradient show through slightly.
+   - border: none; outline: none — removes the default browser border and focus outline.
+   - padding: 10px — adds inner spacing for comfortable text entry.
+   - color: #fff — white text for readability on the dark background.
+   - text-shadow — subtle dark shadow for text depth.
+   - border: 1px solid rgba(0,0,0,0.3) — a very subtle dark border for definition.
+   - border-radius: 4px — rounds the corners of the input fields.
+   - box-shadow — combines an inner shadow (for depth) with a faint outer highlight.
+   - transition: box-shadow .5s ease — smoothly animates the shadow change on focus
+     over 0.5 seconds with an ease timing function.
+   Includes vendor prefixes for older browsers. */
+input { 
+	width: 100%; 
+	margin-bottom: 10px; 
+	background: rgba(0,0,0,0.3);
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+	-webkit-transition: box-shadow .5s ease;
+	-moz-transition: box-shadow .5s ease;
+	-o-transition: box-shadow .5s ease;
+	-ms-transition: box-shadow .5s ease;
+	transition: box-shadow .5s ease;
+}
+
+/* --- Input Field Focus State ---
+   When an input field receives focus (user clicks on it or tabs to it),
+   increase the inner shadow intensity (from 0.2 to 0.4 opacity) to create
+   a subtle "glow" highlight effect, indicating which field is active.
+   The transition defined above smoothly animates this shadow change. */
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }

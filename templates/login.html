@@ -1,0 +1,76 @@
+<!-- ============================================================================
+     login.html — Login Page Template
+     ============================================================================
+     This template renders the user login form. It includes:
+       - Flash message display area for error/info feedback.
+       - Email and password input fields.
+       - A submit button that POSTs the form data to the '/login' route.
+     ============================================================================ -->
+
+<!-- Inherit the layout, head, navbar, and styles from the base template (base.html). -->
+{% extends "base.html" %}
+
+<!-- Begin the content block — this replaces the {% block content %} placeholder in base.html. -->
+{% block content %}
+
+<!-- Main content container — centered on the page via CSS (.box class in styles.css). -->
+<div class="box">
+
+    <!-- Page heading for the login form. -->
+    <h1>Login</h1>
+
+    <!-- Flash Messages Section:
+         Flask's flash() function stores messages in the session that are displayed once.
+         get_flashed_messages() retrieves all pending flash messages for this request.
+         The 'with' statement creates a local variable 'messages' scoped to this block. -->
+    {% with messages = get_flashed_messages() %}
+
+    <!-- Check if there are any flash messages to display. -->
+    {% if messages %}
+
+    <!-- Loop through each flash message and display it in a <p> tag.
+         These messages are styled with an orange color (#ee6f57) via the CSS for <p> elements.
+         Common messages include "That email does not exist" or "Password incorrect". -->
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+
+    <!-- End of the messages check. -->
+    {% endif %}
+
+    <!-- End of the 'with' block — the 'messages' variable goes out of scope here. -->
+    {% endwith %}
+
+    <!-- Login Form:
+         method="post" sends the form data as a POST request to the current URL ('/login').
+         The Flask route function login() processes this POST data. -->
+    <form method="post">
+
+        <!-- Email input field:
+             type="text" allows any text input (could be changed to type="email" for validation).
+             name="email" is the key used to retrieve this value in Flask via request.form.get('email').
+             placeholder="Email" shows hint text inside the empty field.
+             required="required" prevents the form from being submitted if this field is empty. -->
+        <input type="text" name="email" placeholder="Email" required="required"/>
+
+        <!-- Password input field:
+             type="password" hides the typed characters with dots/asterisks for security.
+             name="password" is the key used to retrieve this value in Flask via request.form.get('password').
+             placeholder="Password" shows hint text inside the empty field.
+             required="required" prevents form submission if this field is empty. -->
+        <input type="password" name="password" placeholder="Password" required="required"/>
+
+        <!-- Submit button:
+             type="submit" triggers the form submission when clicked.
+             Bootstrap classes style it as a blue, full-width, large button.
+             The button text "Let me in." is the call-to-action label. -->
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+
+    </form>
+    <!-- End of the login form. -->
+
+</div>
+<!-- End of .box container. -->
+
+<!-- End of the content block. -->
+{% endblock %}

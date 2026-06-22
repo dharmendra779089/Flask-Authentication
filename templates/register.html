@@ -1,0 +1,64 @@
+<!-- ============================================================================
+     register.html — User Registration Page Template
+     ============================================================================
+     This template renders the new user registration form. It includes:
+       - Name, email, and password input fields.
+       - A submit button that POSTs the form data to the '/register' route.
+     ============================================================================ -->
+
+<!-- Inherit the layout, head, navbar, and styles from the base template (base.html). -->
+{% extends "base.html" %}
+
+<!-- Begin the content block — this replaces the {% block content %} placeholder in base.html. -->
+{% block content %}
+
+<!-- Main content container — centered on the page via CSS (.box class in styles.css). -->
+<div class="box">
+
+	<!-- Page heading for the registration form. -->
+	<h1>Register</h1>
+
+    <!-- Registration Form:
+         action="{{ url_for('register') }}" explicitly sets the form's submission URL
+         to the '/register' endpoint. This is functionally the same as omitting the action
+         (which defaults to the current URL), but makes the target explicit.
+         method="post" sends the data as a POST request so the register() function
+         processes it in the if request.method == "POST" branch. -->
+    <form action="{{ url_for('register') }}" method="post">
+
+    	<!-- Name input field:
+             type="text" allows any text input for the user's display name.
+             name="name" is the key used to retrieve this value in Flask via request.form.get('name').
+             placeholder="Name" shows hint text inside the empty field.
+             required="required" prevents form submission if this field is empty. -->
+    	<input type="text" name="name" placeholder="Name" required="required" />
+
+		<!-- Email input field:
+             type="email" enables browser-level email format validation (must contain '@').
+             name="email" is the key used to retrieve this value in Flask via request.form.get('email').
+             placeholder="Email" shows hint text inside the empty field.
+             required="required" prevents form submission if this field is empty. -->
+		<input type="email" name="email" placeholder="Email" required="required" />
+
+        <!-- Password input field:
+             type="password" masks the typed characters with dots/asterisks for privacy.
+             name="password" is the key used to retrieve this value in Flask via request.form.get('password').
+             placeholder="Password" shows hint text inside the empty field.
+             required="required" prevents form submission if this field is empty. -->
+        <input type="password" name="password" placeholder="Password" required="required" />
+
+        <!-- Submit button:
+             type="submit" triggers the form submission when clicked.
+             Bootstrap classes (btn btn-primary btn-block btn-large) style it as a
+             blue, full-width, large button.
+             The button text "Sign me up." is the call-to-action label for registration. -->
+        <button type="submit" class="btn btn-primary btn-block btn-large">Sign me up.</button>
+
+    </form>
+    <!-- End of the registration form. -->
+
+</div>
+<!-- End of .box container. -->
+
+<!-- End of the content block. -->
+{% endblock %}

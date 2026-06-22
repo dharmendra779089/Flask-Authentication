@@ -1,0 +1,120 @@
+<!-- ============================================================================
+     base.html — Base Layout Template
+     ============================================================================
+     This is the parent template that all other pages extend via Jinja2's template
+     inheritance system.  It defines the common HTML structure, including:
+       - The <head> section with meta tags, title, and CSS stylesheets.
+       - A responsive navigation bar with conditional links.
+       - A content block that child templates override to inject their own HTML.
+     ============================================================================ -->
+
+<!-- Declare the document type as HTML5, which tells the browser to use modern rendering. -->
+<!DOCTYPE html>
+
+<!-- The root <html> element wraps the entire page content. -->
+<html>
+
+  <!-- The <head> section contains metadata, stylesheets, and the page title.
+       None of this content is directly visible on the page. -->
+  <head>
+
+    <!-- Set the character encoding to UTF-8 to support international characters. -->
+    <meta charset="utf-8" />
+
+    <!-- Instruct Internet Explorer to use the latest rendering engine available. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Configure the viewport for responsive design on mobile devices.
+         width=device-width: sets the page width to match the device screen width.
+         initial-scale=1: sets the initial zoom level to 100% (no zoom). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- The page title shown in the browser tab and used by search engines. -->
+    <title>Flask Authentication</title>
+
+    <!-- Load Bootstrap 4.5.2 CSS from a CDN (Content Delivery Network).
+         Bootstrap provides pre-built responsive components like navbars, buttons, and grids. -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- Load the custom application stylesheet from the Flask 'static/css/' directory.
+         url_for('static', filename='...') generates the correct URL path for static assets. -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css')}}"
+    />
+  </head>
+
+  <!-- The <body> element contains all visible page content. -->
+  <body>
+
+    <!-- Navigation Bar: uses Bootstrap's navbar component for a responsive top menu. -->
+    <!-- 'navbar-expand-lg' collapses the navbar into a hamburger menu on screens smaller than 'lg'. -->
+    <!-- 'navbar-light bg-light' applies a light color scheme with a light background. -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <!-- Brand/logo link — clicking it navigates to the home page ('/').  -->
+      <a class="navbar-brand" href="/">Flask Authentication</a>
+
+      <!-- Collapsible wrapper for the navigation links (used by Bootstrap's responsive toggler). -->
+      <div class="collapse navbar-collapse">
+
+        <!-- Unordered list of navigation links. 'ml-auto' pushes items to the right side. -->
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Home link — always visible regardless of authentication state. -->
+          <li class="nav-item">
+            <!-- url_for('home') generates the URL for the 'home' route function. -->
+            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+
+          <!-- Conditional Block: Hide Login and Register links for logged-in users.
+               The 'logged_in' variable is passed from the Flask route to the template.
+               When True, these two nav items are skipped entirely. -->
+          {% if not logged_in: %}
+
+          <!-- Login link — only shown to unauthenticated (not logged in) visitors. -->
+          <li class="nav-item">
+            <!-- url_for('login') generates the URL for the 'login' route function. -->
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </li>
+
+          <!-- Register link — only shown to unauthenticated visitors. -->
+          <li class="nav-item">
+            <!-- url_for('register') generates the URL for the 'register' route function. -->
+            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+          </li>
+
+          <!-- End of the conditional block for unauthenticated users. -->
+          {% endif %}
+
+          <!-- Log Out link — always visible in the navbar.
+               Note: The '/logout' route itself is protected by @login_required,
+               so clicking this while not logged in would trigger a redirect or 401. -->
+          <li class="nav-item">
+            <!-- url_for('logout') generates the URL for the 'logout' route function. -->
+            <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+          </li>
+
+        </ul>
+        <!-- End of navigation links list. -->
+
+      </div>
+      <!-- End of collapsible navbar wrapper. -->
+
+    </nav>
+    <!-- End of navigation bar. -->
+
+    <!-- Content Block: this is the placeholder that child templates override.
+         When a child template uses {% extends "base.html" %} and defines
+         {% block content %}...{% endblock %}, its content is injected here. -->
+    {% block content %}
+    {% endblock %}
+
+  </body>
+  <!-- End of visible page content. -->
+
+</html>
+<!-- End of HTML document. -->

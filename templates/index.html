@@ -1,0 +1,57 @@
+<!-- ============================================================================
+     index.html — Home Page Template
+     ============================================================================
+     This is the landing page of the Flask Authentication application.
+     It displays:
+       - A heading with the app title.
+       - Login and Register buttons for unauthenticated visitors.
+       - A "(you are already logged in)" message for authenticated users.
+     ============================================================================ -->
+
+<!-- Inherit the layout, head, navbar, and styles from the base template (base.html).
+     This means all the HTML boilerplate, navigation bar, and CSS are automatically included. -->
+{% extends "base.html" %}
+
+<!-- Begin the content block — this replaces the {% block content %} placeholder in base.html. -->
+{% block content %}
+
+<!-- Main content container — centered on the page via CSS (.box class in styles.css). -->
+<div class="box">
+
+  <!-- Page heading displayed in large, white text with a text shadow effect. -->
+  <h1>Flask Authentication</h1>
+
+  <!-- Conditional Block: Show Login/Register buttons ONLY if the user is NOT logged in.
+       The 'logged_in' variable is a boolean passed from the Flask route (home() function).
+       current_user.is_authenticated is evaluated server-side and passed as 'logged_in'. -->
+  {% if not logged_in: %}
+
+  <!-- Login button — styled as a Bootstrap primary (blue) block-level button.
+       Clicking this navigates to the '/login' route via url_for('login'). -->
+  <a href="{{ url_for('login') }}" class="btn btn-primary btn-block btn-large"
+    >Login</a
+  >
+
+  <!-- Register button — styled as a Bootstrap secondary (gray) block-level button.
+       Clicking this navigates to the '/register' route via url_for('register'). -->
+  <a
+    href="{{ url_for('register') }}"
+    class="btn btn-secondary btn-block btn-large"
+    >Register</a
+  >
+
+  <!-- Else branch: shown when the user IS logged in (logged_in is True). -->
+  {% else %}
+
+    <!-- Feedback message informing the logged-in user that they are already authenticated.
+         This replaces the Login/Register buttons to avoid redundant actions. -->
+    <p> (you are already logged in) </p>
+
+  <!-- End of the conditional if/else block. -->
+  {% endif %}
+
+</div>
+<!-- End of .box container. -->
+
+<!-- End of the content block — returns control to the base template. -->
+{% endblock %}

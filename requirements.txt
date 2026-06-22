@@ -1,0 +1,14 @@
+# Flask-Login: Provides user session management (login, logout, session protection, @login_required)
+Flask_Login==0.6.3
+
+# Werkzeug: WSGI utility library used by Flask; provides password hashing and HTTP utilities
+Werkzeug==3.0.0
+
+# Flask: The core micro web framework for Python — handles routing, templates, and request/response
+Flask==3.0.0
+
+# Flask-SQLAlchemy: Integrates SQLAlchemy ORM with Flask for simplified database operations
+flask_sqlalchemy==3.1.1
+
+# SQLAlchemy: The Python SQL toolkit and ORM used for database modeling and queries
+SQLAlchemy==2.0.25
