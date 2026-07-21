@@ -73,7 +73,7 @@
           <!-- Conditional Block: Hide Login and Register links for logged-in users.
                The 'logged_in' variable is passed from the Flask route to the template.
                When True, these two nav items are skipped entirely. -->
-          {% if not logged_in: %}
+          {% if not logged_in %}
 
           <!-- Login link — only shown to unauthenticated (not logged in) visitors. -->
           <li class="nav-item">
@@ -108,8 +108,9 @@
     <!-- End of navigation bar. -->
 
     <!-- Content Block: this is the placeholder that child templates override.
-         When a child template uses {% extends "base.html" %} and defines
-         {% block content %}...{% endblock %}, its content is injected here. -->
+         When a child template uses extends "base.html" and defines
+         block content ... endblock, its content is injected here. -->
+
     {% block content %}
     {% endblock %}
 

@@ -12,7 +12,8 @@
      This means all the HTML boilerplate, navigation bar, and CSS are automatically included. -->
 {% extends "base.html" %}
 
-<!-- Begin the content block — this replaces the {% block content %} placeholder in base.html. -->
+<!-- Begin the content block — this replaces the block content placeholder in base.html. -->
+
 {% block content %}
 
 <!-- Main content container — centered on the page via CSS (.box class in styles.css). -->
@@ -24,7 +25,7 @@
   <!-- Conditional Block: Show Login/Register buttons ONLY if the user is NOT logged in.
        The 'logged_in' variable is a boolean passed from the Flask route (home() function).
        current_user.is_authenticated is evaluated server-side and passed as 'logged_in'. -->
-  {% if not logged_in: %}
+  {% if not logged_in %}
 
   <!-- Login button — styled as a Bootstrap primary (blue) block-level button.
        Clicking this navigates to the '/login' route via url_for('login'). -->
