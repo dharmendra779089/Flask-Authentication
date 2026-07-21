@@ -18,7 +18,9 @@
 # redirect: returns an HTTP redirect response to send the user to a different URL.
 # flash: stores a one-time message in the session to display feedback to the user.
 # send_from_directory: securely serves a file from a given directory on the server.
+import os
 from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
+
 
 # generate_password_hash: creates a salted hash of a plaintext password for secure storage.
 # check_password_hash: verifies a plaintext password against its previously generated hash.
@@ -54,8 +56,8 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 app = Flask(__name__)
 
 # SECRET_KEY is used by Flask to cryptographically sign session cookies and flash messages.
-# In production, this should be a long, random, and secret string stored in environment variables.
-app.config['SECRET_KEY'] = 'secret-key-goes-here'
+# In production, this is loaded from environment variables (falls back to a default secret key).
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'secret-key-goes-here')
 
 
 # --- Database Configuration ---------------------------------------------------
@@ -66,10 +68,12 @@ class Base(DeclarativeBase):
     pass  # No additional configuration needed; this simply establishes the base.
 
 
-# Configure the database URI to use a local SQLite file named 'users.db'.
-# The 'sqlite:///' prefix tells SQLAlchemy to use the SQLite engine.
-# The file will be created inside the 'instance/' folder (Flask default for instance-relative paths).
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+# Configure the database URI (uses DATABASE_URL environment variable or falls back to local SQLite 'users.db').
+db_url = os.environ.get('DATABASE_URL', 'sqlite:///users.db')
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+
 
 # Instantiate the SQLAlchemy object with our custom Base class.
 # This binds the ORM engine to our declarative base so models can be auto-discovered.
@@ -290,9 +294,8 @@ def download():
 
 # This block runs only when the script is executed directly (not when imported as a module).
 if __name__ == "__main__":
-    # Start the Flask development server with debug mode enabled.
-    # Debug mode provides:
-    #   - Automatic server restart on code changes (hot reload).
-    #   - An interactive debugger in the browser when errors occur.
-    # WARNING: Never use debug=True in production — it exposes sensitive information.
-    app.run(debug=True)
+    # Get port from environment variable or default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    is_debug = os.environ.get("FLASK_DEBUG", "True").lower() in ["true", "1"]
+    app.run(host="0.0.0.0", port=port, debug=is_debug)
+

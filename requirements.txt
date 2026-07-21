@@ -12,3 +12,6 @@ flask_sqlalchemy==3.1.1
 
 # SQLAlchemy: The Python SQL toolkit and ORM used for database modeling and queries
 SQLAlchemy==2.0.25
+
+# Gunicorn: Production WSGI HTTP Server for UNIX / cloud deployment platforms (Render, Railway, Heroku)
+gunicorn==21.2.0
